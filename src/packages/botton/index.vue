@@ -1,19 +1,21 @@
 <template>
   <button
-    class="buttom"
+    class="button"
     :class="[
-      'buttom-' + size,
-      'buttom-' + type,
-      { 'buttom-round': round },
-      { 'buttom-plain': plain },
+      'button-' + size,
+      'button-' + type,
+      { 'button-round': round },
+      { 'button-plain': plain },
+      { 'button-disabled': disabled },
     ]"
+    @click="buttonClick"
   >
     <slot></slot>
   </button>
 </template>
 <script>
 export default {
-  name: 'Buttom-Ui',
+  name: 'button-Ui',
   props: {
     size: {
       // large default small
@@ -40,18 +42,26 @@ export default {
   },
   data () {
     return {
-      buttomSize: {
-        large: 'buttom-large',
-        default: 'buttom-default',
-        small: 'buttom-small'
+      buttonSize: {
+        large: 'button-large',
+        default: 'button-default',
+        small: 'button-small'
       }
+    }
+  },
+  methods: {
+    buttonClick () {
+      if (this.disabled) {
+        return
+      }
+      this.$emit('click')
     }
   }
 }
 </script>
 
 <style scoped lang="less">
-.buttom {
+.button {
   display: inline-block;
   box-sizing: border-box;
   padding: 0 10px;
@@ -68,27 +78,27 @@ export default {
   }
 }
 // 按钮大小
-.buttom-small {
+.button-small {
   height: 28px;
   line-height: 26px;
   padding: 0 8px;
 }
-.buttom-default {
+.button-default {
   height: 32px;
   line-height: 30px;
   padding: 0 10px;
 }
-.buttom-large {
+.button-large {
   height: 40px;
   line-height: 38px;
   padding: 0 15px;
 }
 // 按钮圆角
-.buttom-round {
+.button-round {
   border-radius: 20px;
 }
 // 按钮颜色
-.buttom-primary {
+.button-primary {
   background-color: #409eff;
   border-color: #409eff;
   &:hover {
@@ -96,7 +106,7 @@ export default {
     border-color: rgba(#409eff, 0.8);
   }
 }
-.buttom-success {
+.button-success {
   background-color: #67c23a;
   border-color: #67c23a;
   &:hover {
@@ -104,7 +114,7 @@ export default {
     border-color: rgba(#67c23a, 0.8);
   }
 }
-.buttom-warning {
+.button-warning {
   background-color: #e6a23c;
   border-color: #e6a23c;
   &:hover {
@@ -112,7 +122,7 @@ export default {
     border-color: rgba(#e6a23c, 0.8);
   }
 }
-.buttom-danger {
+.button-danger {
   background-color: #f56c6c;
   border-color: #f56c6c;
   &:hover {
@@ -120,12 +130,13 @@ export default {
     border-color: rgba(#f56c6c, 0.8);
   }
 }
+
 // 镂空
-.buttom-plain {
+.button-plain {
   background-color: rgba(#333, 0.07);
   color: #656668;
 }
-.buttom-plain.buttom-primary {
+.button-plain.button-primary {
   background-color: rgba(#409eff, 0.07);
   color: #409eff;
   &:hover {
@@ -133,7 +144,7 @@ export default {
     color: #fff;
   }
 }
-.buttom-plain.buttom-success {
+.button-plain.button-success {
   background-color: rgba(#67c23a, 0.07);
   color: #67c23a;
   &:hover {
@@ -141,7 +152,7 @@ export default {
     color: #fff;
   }
 }
-.buttom-plain.buttom-warning {
+.button-plain.button-warning {
   background-color: rgba(#e6a23c, 0.07);
   color: #e6a23c;
   &:hover {
@@ -149,12 +160,55 @@ export default {
     color: #fff;
   }
 }
-.buttom-plain.buttom-danger {
+.button-plain.button-danger {
   background-color: rgba(#f56c6c, 0.07);
   color: #f56c6c;
   &:hover {
     background-color: #f56c6c;
     color: #fff;
+  }
+}
+
+// 禁用
+.button-disabled{
+  background-color: #babcbe;
+  border-color: #babcbe;
+  cursor:no-drop;
+  &:hover {
+    background-color: rgba(#babcbe, 0.8);
+    border-color: rgba(#babcbe, 0.8);
+  }
+}
+.button-disabled.button-primary {
+  background-color: rgba(#409eff, 0.5);
+  border-color: rgba(#409eff, 0.5);
+  &:hover {
+    background-color: rgba(#409eff, 0.5);
+    border-color: rgba(#409eff, 0.5);
+  }
+}
+.button-disabled.button-success {
+  background-color: rgba(#67c23a, 0.5);
+  border-color: rgba(#67c23a, 0.5);
+  &:hover {
+    background-color: rgba(#67c23a, 0.5);
+    border-color: rgba(#67c23a, 0.5);
+  }
+}
+.button-disabled.button-warning {
+  background-color: rgba(#e6a23c, 0.5);
+  border-color: rgba(#e6a23c, 0.5);
+  &:hover {
+    background-color: rgba(#e6a23c, 0.5);
+    border-color: rgba(#e6a23c, 0.5);
+  }
+}
+.button-disabled.button-danger {
+  background-color: rgba(#f56c6c, 0.5);
+  border-color: rgba(#f56c6c, 0.5);
+  &:hover {
+    background-color: rgba(#f56c6c, 0.5);
+    border-color: rgba(#f56c6c, 0.5);
   }
 }
 </style>

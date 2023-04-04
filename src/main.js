@@ -4,7 +4,10 @@ import router from './router'
 import store from './store'
 import 'normalize.css/normalize.css'
 import './assets/css/base.css'
+import VueUi from 'vue-two-ui'
+import 'vue-two-ui/vue-two-ui.css'
 Vue.config.productionTip = false
+Vue.use(VueUi)
 new Vue({
   router,
   store,

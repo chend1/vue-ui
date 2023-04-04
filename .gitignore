@@ -1,7 +1,8 @@
 .DS_Store
 node_modules
-/dist
-
+/vue-two-ui
+_.map
+_.html
 
 # local env files
 .env.local
